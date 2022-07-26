@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Dispatch Troubleshooting Software</title>
+<link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-2" align="center">
+ 
+<h3>Error List</h3>
+    <table style="width:80%" border="1"
+           class = "table table-striped table-responsive-md">
+    <thead>
+  <tr>
+    <th>Error Title</th>
+    <th>Error Description</th>
+    <th>Severity</th>
+    <th>SPOC</th>
+    <th>Report/Edit/Delete</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="error:${allerrorlist}">
+        <td th:text="${error.errorTitle}"></td>
+        <td th:text="${error.errorDescription}"></td>
+        <td th:text="${error.severity}"></td>
+	<td th:text="${error.spoc}"></td>
+        <td> <a th:href="@{/reportError/{errorCode}(errorCode=${error.errorCode})}"
+                class="btn btn-primary">Report</a>
+	     <a th:href="@{/viewError/{errorCode}(errorCode=${error.errorCode})}"
+                class="btn btn-secondary">Edit</a>
+	     <a th:href="@{/deleteError/{errorCode}(errorCode=${error.errorCode})}"
+                class="btn btn-tertiary">Delete</a>
+        </td>
+  </tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>
